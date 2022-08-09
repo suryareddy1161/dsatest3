@@ -21,3 +21,72 @@ Input: head = [1], pos = -1
 Output: false
 Explanation: There is no cycle in the linked list.
  */
+
+
+class Node{
+    constructor(data){
+        this.data = data;
+        this.next= null;
+
+    }
+}
+
+class LL{
+    constructor(){
+        this.head=null;
+        this.tail=null;
+    }
+    takeinput(ele){
+        var newnode = new Node(ele)
+        if(this.head == null){
+            this.head=newnode
+            this.tail=newnode
+        }
+        else{
+            this.tail.next=newnode;
+            this.tail=this.tail.next;
+        }
+    }
+    fitail(){
+        let tails = this.head;
+        while(tails.next!=null){
+            tails=tails.next;
+        }
+        tails.next=this.head.next
+    }
+    cycle(){
+        let remhead = this .head
+        let first = this.head
+        if(first == null ){
+            return false
+        }
+        while(first!=null){
+            first = first.next.next;
+            remhead= remhead.next;
+            if(remhead == first){
+                return true
+            }
+        }
+        if(first==null){
+            return false
+        }
+    }
+    printll(){
+        var temp =this.head;
+        var str = " ";
+        while(temp){
+            str+=temp.data+" ";
+            temp= temp.next;
+        }
+        console.log(str)
+    }
+}
+
+var ll = new LL();
+ll.takeinput(3)
+ll.takeinput(2)
+ll.takeinput(0)
+ll.takeinput(-4)
+//ll.printll();
+ll.fitail()
+console.log(ll.cycle());
